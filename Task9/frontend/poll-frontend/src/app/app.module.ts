@@ -15,9 +15,9 @@ import { CategoryFormComponent } from "app/categories/app.categoryFormComponent"
 import { VoteComponent } from "app/vote/app.vote.component";
 
 import { GooglePlusLoginService } from "app/google/google-login.service";
-import { SocialLoginComponent } from './social-login/social-login/social-login.component';
 import { FacebookLoginService } from "app/facebook/facebook-login.service";
 import { FacebookService } from "ng2-facebook-sdk/dist/esm";
+import { SocialLoginComponent } from "app/social-login/social-login/social-login.component";
 
 
 @NgModule({
