@@ -1,24 +1,30 @@
 import { Component } from '@angular/core'
-import { CategoryService} from './app.categories.service'
+import { CategoryService } from './app.categories.service'
 import { Category } from './app.category'
 import { OnInit } from '@angular/core'
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "category-list",
-    templateUrl:"./app.categorylist.html",
-    styleUrls:["./app.category.css"],
-    providers:[CategoryService]
+    templateUrl: "./app.categorylist.html",
+    styleUrls: ["./app.category.css"],
+    providers: [CategoryService]
 })
-export class CategoryListComponent implements OnInit{
+export class CategoryListComponent implements OnInit {
     categories: Category[];
-    constructor(private categoryService:CategoryService) {
-        //this.categories = [new Category(1,'category')];
-        
+    competitionId: number;
+    constructor(private categoryService: CategoryService,
+        private route: ActivatedRoute) {
+
+
     }
 
-    ngOnInit(){
-        this.categoryService.getCategories(1)
-            .subscribe(categorieslist=>{this.categories = categorieslist;},
-                        error=>{});
+    ngOnInit() {
+        this.route.params.subscribe((params) => {
+            this.competitionId = +params['id'];
+            this.categoryService.getCategories(+params["id"])
+                .subscribe(categorieslist => { this.categories = categorieslist; },
+                error => { });
+        })
     }
 }

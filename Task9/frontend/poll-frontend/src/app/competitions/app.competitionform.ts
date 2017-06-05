@@ -15,7 +15,7 @@ export class CompetitionFormComponent implements OnInit {
         this.competition = new Competition(0,"");
     }
     createCompetition():void {
-
+        this.competitionService.createCompetition(this.competition).subscribe();
     }
     ngOnInit() {
         

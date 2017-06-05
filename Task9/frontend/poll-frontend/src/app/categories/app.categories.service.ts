@@ -8,20 +8,27 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CategoryService {
-    private heroesUrl = UrlHelper.BaseUrl+'/api/categories/all?competitionId=';
-    constructor(private http:Http) {
-    
+    private getCategoriesUrl = UrlHelper.BaseUrl + '/api/categories/all?competitionId=';
+    private createCategoryUrl = UrlHelper.BaseUrl + '/api/categories/create';
+    constructor(private http: Http) {
+
     }
-    getCategories(competitionId:Number):Observable<Category[]>{
-         return this.http.get(this.heroesUrl+competitionId.toString())
-                    .map((res:Response)=> res.json() as Category[])
-                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    getCategories(competitionId: Number): Observable<Category[]> {
+        return this.http.get(this.getCategoriesUrl + competitionId.toString())
+            .map((res: Response) => res.json() as Category[])
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
-    private extractData(res:Response){
+
+    createCategory(category: Category): Observable<Category> {
+        return this.http.post(this.createCategoryUrl, category)
+            .map((res: Response) => res.json() as Category)
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+    private extractData(res: Response) {
         let body = res.json();
         return body;
     }
-    private handleError(error:Response|any){
+    private handleError(error: Response | any) {
         return Observable.throw(error);
     }
 }
