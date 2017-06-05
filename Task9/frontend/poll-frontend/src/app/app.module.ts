@@ -10,13 +10,18 @@ import { CategoryService } from './categories/app.categories.service';
 import { CompetitionListComponent } from './competitions/app.competitionlist';
 import { CompetitionFormComponent } from './competitions/app.competitionform';
 import { ApplicationRoutes } from "./app.routes";
+import { GooglePlusLoginService } from "app/google/google-login.service";
+import { SocialLoginComponent } from './social-login/social-login/social-login.component';
+import { FacebookLoginService } from "app/facebook/facebook-login.service";
+import { FacebookService } from "ng2-facebook-sdk/dist/esm";
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryListComponent,
     CompetitionListComponent,
-    CompetitionFormComponent
+    CompetitionFormComponent,
+    SocialLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,7 @@ import { ApplicationRoutes } from "./app.routes";
     HttpModule,
     RouterModule.forRoot(ApplicationRoutes.routes)
   ],
-  providers: [CategoryService],
+  providers: [CategoryService, GooglePlusLoginService, FacebookLoginService, FacebookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
