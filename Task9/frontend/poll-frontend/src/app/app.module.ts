@@ -27,7 +27,7 @@ import { FacebookService } from "ng2-facebook-sdk/dist/esm";
     CompetitionListComponent,
     CompetitionFormComponent,
     CategoryFormComponent,
-    VoteComponent
+    VoteComponent,
     SocialLoginComponent
   ],
   imports: [
