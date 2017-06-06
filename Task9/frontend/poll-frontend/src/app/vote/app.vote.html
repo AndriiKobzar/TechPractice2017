@@ -4,6 +4,9 @@
 
 		<span>{{competitor.firstName}}</span>
 		<br/>
+		<span>Кількість голосів:</span>
+		<span>{{votesMap.get(competitor.id)}}</span>
+		<br/>
 		<button (click)="vote(competitor.id)"
 				class="btn btn-success">Голосувати
 		</button>

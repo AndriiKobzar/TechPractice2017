@@ -15,7 +15,10 @@ export class VoteService {
 
 	getAll(categoryId: number): Observable<Vote[]> {
 		return this.http.get(this.GET_ALL.replace("{category}", categoryId.toString())).map((res: Response) => {
-			return res.json() as Vote[];
+			return res.json().map((el: any) => {
+				const fields = el["fields"];
+				return new Vote(fields['category'], fields['competitor'], fields['voter'])
+			});
 		});
 	}
 
