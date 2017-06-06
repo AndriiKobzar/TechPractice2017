@@ -3,7 +3,7 @@ import json
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from polls.models import Vote, Category, User, Competition
+from polls.models import Vote, Category, User, Competition, Competitor
 from django.db.models import Count
 
 
@@ -15,11 +15,11 @@ def vote(request):
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
     category = Category.objects.get(pk=body['categoryId'])
-    competitor = Category.objects.get(pk=body['competitorId'])
+    competitor = Competitor.objects.get(pk=body['competitorId'])
     vote = Vote()
     vote.category = category
     vote.competitor = competitor
-    vote.user = user
+    vote.voter = User.objects.get(pk=1)
     vote.save()
     return HttpResponse("{result:'ok'}", content_type="application/json")
 

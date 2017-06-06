@@ -1,10 +1,11 @@
 <h2>Категорії
 </h2>
 <div class="col-md-12">
-    <a class="btn btn-default" [routerLink]="['/competition', competitionId, 'newcategory']">Створити категорію</a>
-    <ul>
-        <li *ngFor="let category of categories">
-            <a class="btn btn-default">{{category.name}}</a>
-        </li>
-    </ul>
+	<a class="btn btn-default" [routerLink]="['/competition', competitionId, 'newcategory']">Створити категорію</a>
+	<a class="btn btn-default" [routerLink]="['/competitor', competitionId, 'new']">Створити конкурсанта</a>
+	<ul>
+		<li *ngFor="let category of categories">
+			<a class="btn btn-default" [routerLink]="['/competition',competitionId,'vote', category.id]">{{category.name}}</a>
+		</li>
+	</ul>
 </div>
