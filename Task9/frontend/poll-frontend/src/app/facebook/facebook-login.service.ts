@@ -24,7 +24,7 @@ export class FacebookLoginService {
         return Observable.create((observer: Observer<any>) => {
             this.facebook.login(loginOptions)
                 .then((response: LoginResponse) => {
-                    console.log(response);
+                    console.log(response.authResponse.accessToken);
                 });
         });
     }
