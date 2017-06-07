@@ -1,0 +1,7 @@
+.competitor-form {
+	display: flex;
+	justify-content: center;
+	flex-flow: column;
+	width: 50%;
+	margin: auto
+}

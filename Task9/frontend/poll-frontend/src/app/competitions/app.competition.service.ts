@@ -24,13 +24,7 @@ export class CompetitionService {
 
 	createCompetition(competition: Competition): Observable<Competition> {
 		const options = new Headers();
-		if (localStorage.getItem("GTOKEN")) {
-			options.set("Social-Type", "Google");
-			options.set("Token", localStorage.getItem("GTOKEN"))
-		} else if (localStorage.getItem("GTOKEN")) {
-			options.set("Social-Type", "Facebook");
-			options.set("Token", localStorage.getItem("FBTOKEN"))
-		}
+
 		return this.http.post(this.createURL, competition, {headers: options})
 			.map((res: Response) => res.json() as Competition);
 	}

@@ -6,7 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 @Component({
 	selector: "app-competitor-form",
 	templateUrl: "./app-competitor-form.html",
-	styles: []
+	styleUrls: ["./app.competitor.css"]
 })
 export class CompetitorFormComponent implements OnInit {
 	competitor: Competitor;

@@ -19,7 +19,7 @@ def vote(request):
     vote = Vote()
     vote.category = category
     vote.competitor = competitor
-    vote.voter = user
+    vote.voter = User.objects.get(pk=3)
     vote.save()
     return HttpResponse("{result:'ok'}", content_type="application/json")
 

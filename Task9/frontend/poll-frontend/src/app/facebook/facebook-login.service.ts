@@ -25,7 +25,8 @@ export class FacebookLoginService {
             this.facebook.login(loginOptions)
                 .then((response: LoginResponse) => {
                     console.log(response.authResponse.accessToken);
-                    localStorage.setItem("FBTOKEN", response.authResponse.accessToken)
+                    localStorage.setItem("TOKEN", response.authResponse.accessToken);
+                    localStorage.setItem("TYPE", "FACEBOOK");
                 });
         });
     }

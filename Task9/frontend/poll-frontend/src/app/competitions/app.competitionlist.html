@@ -1,4 +1,4 @@
-<a [routerLink]='["competition/new"]' class="btn btn-default">Створити голосувалку</a>
+<a [routerLink]='["competition/new"]' *ngIf="isLogined" class="btn btn-default">Створити голосувалку</a>
 <div class="col-md-12 competition-list">
 	<ul>
 		<li *ngFor="let competition of competitions">

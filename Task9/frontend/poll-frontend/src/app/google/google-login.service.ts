@@ -8,13 +8,13 @@ export class GooglePlusLoginService {
   private auth2: any;
 
   constructor(private ngZone: NgZone) {
-    /*gapi.load('auth2', () => {
+    gapi.load('auth2', () => {
       gapi.auth2.init({
         client_id: '138821107811-bteqmuan1irqe5o3brm5ec03mgrtcevn.apps.googleusercontent.com'
       }).then(() => {
         this.auth2 = gapi.auth2.getAuthInstance();
       });
-    });*/
+    });
   }
 
   login(): Observable<any> {
@@ -26,8 +26,8 @@ export class GooglePlusLoginService {
         const authResponse = googleUser.getAuthResponse();
         this.ngZone.run(() => {
             console.log(authResponse.access_token);
-            localStorage.setItem("GTOKEN", authResponse.accessToken);
-
+            localStorage.setItem("TOKEN", authResponse.accessToken);
+			localStorage.setItem("TYPE", 'Google')
             observer.next(null);
             observer.complete();
           });

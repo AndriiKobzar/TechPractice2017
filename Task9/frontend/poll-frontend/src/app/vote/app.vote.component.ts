@@ -17,7 +17,8 @@ export class VoteComponent implements OnInit {
 	votes: any;
 	categoryId: number;
 	votesMap: Map<number, number>;
-
+	isLogined: boolean;
+	voted: boolean;
 	constructor(private route: ActivatedRoute,
 				private competitorsService: CompetitorsService,
 				private voteService: VoteService) {
@@ -40,16 +41,22 @@ export class VoteComponent implements OnInit {
 						}
 					});
 					this.competitors.sort((c1, c2) => {
-						return this.votesMap.get(c1.id) - this.votesMap.get(c2.id);
+						return this.votesMap.get(c2.id) - this.votesMap.get(c1.id);
 					});
 					console.log(this.votesMap);
 				});
 			});
 
 		});
+		this.isLogined = !!localStorage.getItem("TOKEN");
+		this.voted = localStorage.getItem(this.categoryId.toString())==='voted';
+
 	}
 
 	vote(competitorId: number) {
-		this.voteService.vote({categoryId: this.categoryId, competitorId: competitorId}).subscribe();
+		this.voted = true;
+		localStorage.setItem(this.categoryId.toString(), "voted");
+		this.votesMap.set(competitorId, this.votesMap.get(competitorId) + 1);
+		this.voteService.vote({categoryId: this.categoryId, competitorId: competitorId}).subscribe(()=>{},()=>{});
 	}
 }

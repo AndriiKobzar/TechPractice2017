@@ -1,6 +1,6 @@
 <h2>Категорії</h2>
 <div>
-	<div class="category-list">
+	<div class="category-list" *ngIf="isLogined">
 		<a class="btn btn-default" [routerLink]="['/competition', competitionId, 'newcategory']">Створити категорію</a>
 		<a class="btn btn-default" [routerLink]="['/competitor', competitionId, 'new']">Створити конкурсанта</a>
 	</div>

@@ -11,6 +11,7 @@ import { OnInit } from '@angular/core'
 })
 export class CompetitionListComponent implements OnInit {
     competitions: Competition[];
+    isLogined: boolean;
     constructor(private competitionService: CompetitionService) {
 
     }
@@ -19,5 +20,6 @@ export class CompetitionListComponent implements OnInit {
         this.competitionService.getCompetitions()
             .subscribe(competitionslist => { this.competitions = competitionslist; },
             error => { });
+        this.isLogined = !!localStorage.getItem("TOKEN");
     }
 }

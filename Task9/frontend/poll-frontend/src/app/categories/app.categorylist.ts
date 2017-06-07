@@ -13,6 +13,7 @@ import { ActivatedRoute } from "@angular/router";
 export class CategoryListComponent implements OnInit {
     categories: Category[];
     competitionId: number;
+    isLogined: boolean;
     constructor(private categoryService: CategoryService,
         private route: ActivatedRoute) {
 
@@ -25,6 +26,7 @@ export class CategoryListComponent implements OnInit {
             this.categoryService.getCategories(+params["id"])
                 .subscribe(categorieslist => { this.categories = categorieslist; },
                 error => { });
-        })
+        });
+        this.isLogined = !!localStorage.getItem("TOKEN");
     }
 }

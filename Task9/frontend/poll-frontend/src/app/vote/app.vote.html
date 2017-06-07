@@ -10,6 +10,7 @@
 		<span>{{votesMap.get(competitor.id) || 0}}</span>
 		<br/>
 		<button (click)="vote(competitor.id)"
+				*ngIf="isLogined && !voted"
 				class="btn btn-success">Голосувати
 		</button>
 	</div>
