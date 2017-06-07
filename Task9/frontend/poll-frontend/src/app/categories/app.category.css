@@ -1,0 +1,16 @@
+.category-list {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.category-list .category-btn {
+	display: flex;
+	line-height: 32px;
+	font-size: 20px;
+}
+
+ul {
+	list-style: none;
+}

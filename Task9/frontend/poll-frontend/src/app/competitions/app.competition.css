@@ -1,11 +1,20 @@
 .competition-list {
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
 }
+
 .competition-list .competition-btn {
-    display: flex;
-    line-height: 32px;
-    font-size: 20px;
+	display: flex;
+	line-height: 32px;
+	font-size: 20px;
+}
+
+ul {
+	list-style: none;
+}
+
+li {
+	margin: 5px;
 }

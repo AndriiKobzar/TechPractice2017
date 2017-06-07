@@ -1,19 +1,28 @@
-import { Component, OnInit } from "@angular/core";
-import { Competitor } from "app/competitors/app.competitor";
+import {Component, OnInit} from "@angular/core";
+import {Competitor} from "app/competitors/app.competitor";
+import {CompetitorsService} from "./app.cometitors.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
-    selector: "app-competitor-form",
-    templateUrl: "app-competitor-form.html",
-    styles: ["app-competitor-form.css"]
+	selector: "app-competitor-form",
+	templateUrl: "./app-competitor-form.html",
+	styles: []
 })
 export class CompetitorFormComponent implements OnInit {
-    competitors: Competitor[];
-    // constructor(private competitorsS) {
+	competitor: Competitor;
 
-    // }
-    
-    ngOnInit(): void {
-        this.competitors
-    }
+	constructor( private activeRoute: ActivatedRoute,
+		private competitorsService: CompetitorsService) {
 
+	}
+
+	createNewCompetitor() {
+		this.competitorsService.createCompetitor(this.competitor).subscribe();
+	}
+
+	ngOnInit(): void {
+		this.activeRoute.params.subscribe((params)=>{
+			this.competitor = new Competitor(0,"","",1,"",+params["id"]);
+		});
+	}
 }

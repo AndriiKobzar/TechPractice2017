@@ -1,0 +1,16 @@
+.votes-container{
+	display: flex;
+	justify-content: center;
+}
+.vote-block {
+	margin: 5px;
+	width: 200px;
+	padding: 5px;
+	border: solid lightblue 1px;
+}
+
+.vote-block span {
+	font-size: 16px;
+	font-weight: 700;
+}
+
