@@ -17,6 +17,7 @@ export class VoteComponent implements OnInit {
 	votes: any;
 	categoryId: number;
 	votesMap: Map<number, number>;
+
 	constructor(private route: ActivatedRoute,
 				private competitorsService: CompetitorsService,
 				private voteService: VoteService) {
@@ -28,19 +29,23 @@ export class VoteComponent implements OnInit {
 			this.categoryId = +params["categoryId"];
 			this.competitorsService.getAll(params["competitionId"]).subscribe((competitors) => {
 				this.competitors = competitors;
-			});
-			this.voteService.getAll(this.categoryId).subscribe((votings: Vote[]) => {
-				this.votes = votings;
-				votings.forEach((v)=>{
-					if(this.votesMap.has(v.competitorId)){
-						this.votesMap.set(v.competitorId, this.votesMap.get(v.competitorId)+1);
-					}
-					else{
-						this.votesMap.set(v.competitorId, 1);
-					}
+				this.voteService.getAll(this.categoryId).subscribe((votings: Vote[]) => {
+
+					votings.forEach((v) => {
+						if (this.votesMap.has(v.competitorId)) {
+							this.votesMap.set(v.competitorId, this.votesMap.get(v.competitorId) + 1);
+						}
+						else {
+							this.votesMap.set(v.competitorId, 1);
+						}
+					});
+					this.competitors.sort((c1, c2) => {
+						return this.votesMap.get(c1.id) - this.votesMap.get(c2.id);
+					});
+					console.log(this.votesMap);
 				});
-				console.log(this.votesMap);
 			});
+
 		});
 	}
 

@@ -17,6 +17,7 @@ def get_competitors(request):
 
 @csrf_exempt
 def create_competitor(request):
+    headers = request.META
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
     new_competitor = Competitor(firstName=body["firstName"], lastName=body["lastName"],

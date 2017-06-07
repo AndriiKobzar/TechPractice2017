@@ -2,7 +2,7 @@ import json
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core import serializers
 from polls.models import Vote, Category, User, Competition, Competitor
 from django.db.models import Count
 
@@ -19,7 +19,7 @@ def vote(request):
     vote = Vote()
     vote.category = category
     vote.competitor = competitor
-    vote.voter = User.objects.get(pk=1)
+    vote.voter = User.objects.get(pk=2)
     vote.save()
     return HttpResponse("{result:'ok'}", content_type="application/json")
 
@@ -28,9 +28,9 @@ def get_votes_for_category(request):
     categoryId = int(request.GET.get('categoryId', -1))
     category = Category.objects.get(pk=categoryId)
     votes = Vote.objects.all().filter(category=category)
-    votes_map = votes.objects.annotate(votes=Count('competitor'))
+    votes_map = votes.annotate(votes=Count('voter'))
 
-    return HttpResponse(json.dumps(votes_map), content_type="application/json")
+    return HttpResponse(serializers.serialize('json', votes_map), content_type="application/json")
 
 
 def map_votes(votes):
