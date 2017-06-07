@@ -3,7 +3,6 @@ import {Competitor} from "app/competitors/app.competitor";
 import {CompetitorsService} from "app/competitors/app.cometitors.service";
 import {ActivatedRoute} from "@angular/router";
 import {VoteService} from "app/vote/app.votes.service";
-import {current} from "codelyzer/util/syntaxKind";
 import {Vote} from "./vote";
 
 @Component({
@@ -19,6 +18,7 @@ export class VoteComponent implements OnInit {
 	votesMap: Map<number, number>;
 	isLogined: boolean;
 	voted: boolean;
+
 	constructor(private route: ActivatedRoute,
 				private competitorsService: CompetitorsService,
 				private voteService: VoteService) {
@@ -49,7 +49,7 @@ export class VoteComponent implements OnInit {
 
 		});
 		this.isLogined = !!localStorage.getItem("TOKEN");
-		this.voted = localStorage.getItem(this.categoryId.toString())==='voted';
+		this.voted = localStorage.getItem(this.categoryId.toString()) === 'voted';
 
 	}
 
@@ -57,6 +57,23 @@ export class VoteComponent implements OnInit {
 		this.voted = true;
 		localStorage.setItem(this.categoryId.toString(), "voted");
 		this.votesMap.set(competitorId, this.votesMap.get(competitorId) + 1);
-		this.voteService.vote({categoryId: this.categoryId, competitorId: competitorId}).subscribe(()=>{},()=>{});
+		this.voteService.vote({categoryId: this.categoryId, competitorId: competitorId}).subscribe(() => {
+		}, () => {
+		});
+	}
+
+	getWinner(): Competitor {
+		return this.competitors.find((c) => c.id===this.getMaxVotes());
+
+	}
+
+	getMaxVotes(): number {
+		let maxVotesKey = 1;
+		this.votesMap.forEach((key,value, map) => {
+			if(map.get(maxVotesKey) < map.get(key)){
+				maxVotesKey = key;
+			}
+		});
+		return maxVotesKey;
 	}
 }

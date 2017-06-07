@@ -26,7 +26,7 @@ export class GooglePlusLoginService {
         const authResponse = googleUser.getAuthResponse();
         this.ngZone.run(() => {
             console.log(authResponse.access_token);
-            localStorage.setItem("TOKEN", authResponse.accessToken);
+            localStorage.setItem("TOKEN", authResponse.access_token);
 			localStorage.setItem("TYPE", 'Google')
             observer.next(null);
             observer.complete();
