@@ -10,8 +10,8 @@ from django.db.models import Count
 # {categoryId:<id>, competitorId:<compId>}
 @csrf_exempt
 def vote(request):
-    user = User(vkId="qwe")
-    user.save()
+    user = User.objects.create(vkId="qwe")
+
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
     category = Category.objects.get(pk=body['categoryId'])
@@ -19,7 +19,7 @@ def vote(request):
     vote = Vote()
     vote.category = category
     vote.competitor = competitor
-    vote.voter = User.objects.get(pk=2)
+    vote.voter = user
     vote.save()
     return HttpResponse("{result:'ok'}", content_type="application/json")
 

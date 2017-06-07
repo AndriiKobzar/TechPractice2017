@@ -54,6 +54,19 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware'
 ]
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'Social-Type',
+    'Token',
+    'x-requested-with',
+)
 ROOT_URLCONF = 'poll_backend.urls'
 
 TEMPLATES = [

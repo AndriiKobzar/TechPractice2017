@@ -36,7 +36,7 @@ class Competitor(models.Model):
 
     def as_json(self):
         return dict(id=self.id, competition=self.competition.id, firstName=self.firstName,
-                    lastName=self.lastName, course=self.course, specialisty=self.speciality)
+                    lastName=self.lastName, course=self.course, speciality=self.speciality)
 
 
 class Vote(models.Model):

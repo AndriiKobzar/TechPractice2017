@@ -1,11 +1,13 @@
 <div class="votes-container">
 	<div class="vote-block col-md-3" *ngFor="let competitor of competitors">
 		<span>{{competitor.lastName}}</span>
-
 		<span>{{competitor.firstName}}</span>
 		<br/>
+		<span>{{competitor.course}} курс</span>
+		<span>{{competitor.speciality}}</span>
+		<br/>
 		<span>Кількість голосів:</span>
-		<span>{{votesMap.get(competitor.id)}}</span>
+		<span>{{votesMap.get(competitor.id) || 0}}</span>
 		<br/>
 		<button (click)="vote(competitor.id)"
 				class="btn btn-success">Голосувати

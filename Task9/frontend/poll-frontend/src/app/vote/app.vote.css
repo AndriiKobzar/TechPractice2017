@@ -2,6 +2,9 @@
 	display: flex;
 	justify-content: center;
 }
+.vote-block:first-child {
+	background-color: aquamarine;
+}
 .vote-block {
 	margin: 5px;
 	width: 200px;
