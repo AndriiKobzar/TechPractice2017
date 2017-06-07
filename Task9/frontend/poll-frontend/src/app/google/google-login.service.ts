@@ -25,7 +25,7 @@ export class GooglePlusLoginService {
       this.ngZone.runOutsideAngular(() => this.auth2.signIn(params).then((googleUser: any) => {
         const authResponse = googleUser.getAuthResponse();
         this.ngZone.run(() => {
-            console.log(authResponse);
+            console.log(authResponse.access_token);
             observer.next(null);
             observer.complete();
           });  
